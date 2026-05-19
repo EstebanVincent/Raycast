@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 # Helper: source this file, then call load_env
 # Usage: source "$HOME/Raycast/utils/load_env.sh"
 #        load_env VAR1 VAR2 VAR3 || exit 1
@@ -6,7 +6,7 @@
 
 load_env() {
   local caller
-  caller="$(basename "${BASH_SOURCE[1]}" .sh)"
+  caller="$(basename "${funcfiletrace[1]%:*}" .zsh)"
   LOADED_ENV_FILE="$HOME/Raycast/envs/${caller}.env"
 
   if [[ ! -f "$LOADED_ENV_FILE" ]]; then
@@ -27,15 +27,15 @@ load_env() {
     if [[ "$value" == \"*\" ]]; then
       value="${value#\"}"
       value="${value%\"}"
-    elif [[ "$value" == \'*\' ]]; then
-      value="${value#\'}"
-      value="${value%\'}"
+    elif [[ "$value" == "'"*"'" ]]; then
+      value="${value#"'"}"
+      value="${value%"'"}"
     fi
     export "$key=$value"
   done < "$LOADED_ENV_FILE"
 
   for var in "$@"; do
-    if [[ -z "${!var}" ]]; then
+    if [[ -z "${(P)var}" ]]; then
       echo "❌ Missing $var in .env"
       return 1
     fi

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Required parameters:
 # @raycast.schemaVersion 1
@@ -14,7 +14,7 @@
 # @raycast.author Esteban Vincent
 
 # shellcheck source=/dev/null
-source "$HOME/Raycast/utils.sh"
+source "$HOME/Raycast/utils.zsh"
 load_env N8N_WEBHOOK_BASE_URL N8N_WEBHOOK_IMGFLIP_API_KEY || exit 1
 
 QUERY="$1"

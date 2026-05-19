@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Required parameters:
 # @raycast.schemaVersion 1
 # @raycast.title Get Graph User
-# @raycast.mode silent
+# @raycast.mode compact
 # @raycast.argument1 { "type": "text", "placeholder": "User ID or UPN" }
 
 # Optional parameters:
@@ -16,7 +16,7 @@
 USER_ID="$1"
 
 # shellcheck source=/dev/null
-source "$HOME/Raycast/utils.sh"
+source "$HOME/Raycast/utils.zsh"
 load_env AZURE_TENANT_ID AZURE_CLIENT_ID AZURE_CLIENT_SECRET || exit 1
 
 TOKEN_RESPONSE=$(curl -s -w "\n%{http_code}" \
