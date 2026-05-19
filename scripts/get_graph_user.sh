@@ -15,7 +15,7 @@
 
 USER_ID="$1"
 
-ENV_FILE="$HOME/Raycast/scripts/.env"
+ENV_FILE="$HOME/Raycast/envs/get_graph_user.env"
 if [[ ! -f "$ENV_FILE" ]]; then
   echo "❌ .env not found at $ENV_FILE"
   exit 1

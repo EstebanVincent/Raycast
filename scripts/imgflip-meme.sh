@@ -13,7 +13,7 @@
 # @raycast.description Generate a meme via imgflip webhook and copy image to clipboard
 # @raycast.author Esteban Vincent
 
-ENV_FILE="$HOME/Raycast/scripts/.env"
+ENV_FILE="$HOME/Raycast/envs/imgflip-meme.env"
 if [[ ! -f "$ENV_FILE" ]]; then
   echo "❌ .env not found at $ENV_FILE"
   exit 1
