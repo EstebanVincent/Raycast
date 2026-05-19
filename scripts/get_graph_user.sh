@@ -15,23 +15,9 @@
 
 USER_ID="$1"
 
-ENV_FILE="$HOME/Raycast/envs/get_graph_user.env"
-if [[ ! -f "$ENV_FILE" ]]; then
-  echo "❌ .env not found at $ENV_FILE"
-  exit 1
-fi
-
-set -o allexport
 # shellcheck source=/dev/null
-source "$ENV_FILE"
-set +o allexport
-
-for var in AZURE_TENANT_ID AZURE_CLIENT_ID AZURE_CLIENT_SECRET; do
-  if [[ -z "${!var}" ]]; then
-    echo "❌ Missing $var in .env"
-    exit 1
-  fi
-done
+source "$HOME/Raycast/utils.sh"
+load_env AZURE_TENANT_ID AZURE_CLIENT_ID AZURE_CLIENT_SECRET || exit 1
 
 TOKEN_RESPONSE=$(curl -s -w "\n%{http_code}" \
   -X POST "https://login.microsoftonline.com/${AZURE_TENANT_ID}/oauth2/v2.0/token" \

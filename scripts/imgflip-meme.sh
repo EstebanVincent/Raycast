@@ -13,26 +13,9 @@
 # @raycast.description Generate a meme via imgflip webhook and copy image to clipboard
 # @raycast.author Esteban Vincent
 
-ENV_FILE="$HOME/Raycast/envs/imgflip-meme.env"
-if [[ ! -f "$ENV_FILE" ]]; then
-  echo "❌ .env not found at $ENV_FILE"
-  exit 1
-fi
-
-set -o allexport
 # shellcheck source=/dev/null
-source "$ENV_FILE"
-set +o allexport
-
-# Re-read literally to preserve $ in value, strip surrounding quotes
-N8N_WEBHOOK_IMGFLIP_API_KEY=$(grep -m1 '^N8N_WEBHOOK_IMGFLIP_API_KEY=' "$ENV_FILE" | cut -d= -f2- | sed "s/^['\"]//;s/['\"]$//")
-
-for var in N8N_WEBHOOK_BASE_URL N8N_WEBHOOK_IMGFLIP_API_KEY; do
-  if [[ -z "${!var}" ]]; then
-    echo "❌ Missing $var in .env"
-    exit 1
-  fi
-done
+source "$HOME/Raycast/utils.sh"
+load_env N8N_WEBHOOK_BASE_URL N8N_WEBHOOK_IMGFLIP_API_KEY || exit 1
 
 QUERY="$1"
 TMPFILE=$(mktemp /tmp/meme_XXXXXX.jpg)
