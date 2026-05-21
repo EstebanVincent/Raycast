@@ -29,14 +29,28 @@ while true; do
   (( i++ ))
 done
 
-if [[ ${#roots[@]} -eq 0 ]]; then
-  echo "❌ No REPO_ROOT_* defined in open-repo.env"
+# Collect REPO_PATH_1, REPO_PATH_2, … (added directly, not searched within)
+paths=()
+i=1
+while true; do
+  varname="REPO_PATH_$i"
+  val="${(P)varname}"
+  [[ -z "$val" ]] && break
+  paths+=("$val")
+  (( i++ ))
+done
+
+if [[ ${#roots[@]} -eq 0 && ${#paths[@]} -eq 0 ]]; then
+  echo "❌ No REPO_ROOT_* or REPO_PATH_* defined in open-repo.env"
   exit 1
 fi
 
 selected=$(
-  find "${roots[@]}" \
-    -mindepth 1 -maxdepth "${REPO_DEPTH:-3}" -type d 2>/dev/null \
+  {
+    [[ ${#roots[@]} -gt 0 ]] && \
+      find "${roots[@]}" -mindepth 1 -maxdepth "${REPO_DEPTH:-3}" -type d 2>/dev/null
+    [[ ${#paths[@]} -gt 0 ]] && printf '%s\n' "${paths[@]}"
+  } \
   | fzf --filter="$1" \
   | head -1
 )
