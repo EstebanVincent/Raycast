@@ -12,14 +12,15 @@ utils.zsh   # Shared helper: load_env
 
 ## Scripts
 
-| Script                | Icon | Description                                            |
-| --------------------- | ---- | ------------------------------------------------------ |
-| `base64.zsh`          | 🔡   | Encode/decode base64 — text, file path, or clipboard   |
-| `get_graph_user.zsh`  | 👤   | Fetch MS Graph user info by ID or UPN                  |
-| `imgflip-meme.zsh`    | 🖼️   | Generate a meme via imgflip webhook, copy to clipboard |
-| `ipv4-get.zsh`        | 🌐   | Copy public IPv4 to clipboard                          |
-| `no-as-a-service.zsh` | ❌   | Random rejection reason from No-as-a-Service           |
-| `x.zsh`               | 🤖   | Copy Bruno ✕ character to clipboard                    |
+| Script                  | Icon | Description                                            |
+| ----------------------- | ---- | ------------------------------------------------------ |
+| `base64.zsh`            | 🔡   | Encode/decode base64 — text, file path, or clipboard   |
+| `get_graph_user.zsh`    | 👤   | Fetch MS Graph user info by ID or UPN                  |
+| `get_graph_user_id.zsh` | 👤   | Look up Graph user ID by email or UPN, copy it         |
+| `imgflip-meme.zsh`      | 🖼️   | Generate a meme via imgflip webhook, copy to clipboard |
+| `ipv4-get.zsh`          | 🌐   | Copy public IPv4 to clipboard                          |
+| `no-as-a-service.zsh`   | ❌   | Random rejection reason from No-as-a-Service           |
+| `x.zsh`                 | 🤖   | Copy Bruno ✕ character to clipboard                    |
 
 ## Environment files
 
