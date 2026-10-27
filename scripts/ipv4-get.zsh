@@ -11,6 +11,6 @@
 # Documentation:
 # @raycast.author Esteban Vincent
 
-PUBLIC_IP=$(curl -s https://api64.ipify.org)
-echo -n "$PUBLIC_IP" | pbcopy 
+PUBLIC_IP=$(curl -s -4 --max-time 10 https://api.ipify.org)
+echo -n "$PUBLIC_IP" | pbcopy
 echo "Copied to clipboard! ✅"
