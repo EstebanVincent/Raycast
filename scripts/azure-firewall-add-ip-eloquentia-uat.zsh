@@ -44,7 +44,7 @@ if [[ -n "$1" ]]; then
   IP_SOURCE="Provided IP"
 else
   # Firewalls only accept IPv4, so use the IPv4-only endpoint
-  IP=$(curl -s -4 --max-time 10 https://api.ipify.org)
+  IP=$(curl -s -4 --max-time 10 https://ipinfo.io/ip)
   IP_SOURCE="Public IP"
 fi
 if [[ ! "$IP" =~ ^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$ ]] \
