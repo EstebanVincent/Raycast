@@ -3,11 +3,12 @@
 # Usage: source "$HOME/Raycast/utils/load_env.sh"
 #        load_env VAR1 VAR2 VAR3 || exit 1
 # Side-effect: sets LOADED_ENV_FILE to the resolved path
+# Optional: set ENV_NAME before calling to load envs/<ENV_NAME>.env instead of envs/<script-name>.env
 
 load_env() {
   local caller
   caller="$(basename "${funcfiletrace[1]%:*}" .zsh)"
-  LOADED_ENV_FILE="$HOME/Raycast/envs/${caller}.env"
+  LOADED_ENV_FILE="$HOME/Raycast/envs/${ENV_NAME:-$caller}.env"
 
   if [[ ! -f "$LOADED_ENV_FILE" ]]; then
     echo "❌ .env not found at $LOADED_ENV_FILE"

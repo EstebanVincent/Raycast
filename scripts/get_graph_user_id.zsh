@@ -17,14 +17,8 @@ USER_EMAIL="$1"
 
 # shellcheck source=/dev/null
 source "$HOME/Raycast/utils.zsh"
-source "$HOME/Raycast/envs/get_graph_user.env"
-
-for variable in AZURE_TENANT_ID AZURE_CLIENT_ID AZURE_CLIENT_SECRET; do
-  if [[ -z "${(P)variable}" ]]; then
-    echo "Missing $variable in get_graph_user.env"
-    exit 1
-  fi
-done
+ENV_NAME=get_graph_user
+load_env AZURE_TENANT_ID AZURE_CLIENT_ID AZURE_CLIENT_SECRET || exit 1
 
 TOKEN_RESPONSE=$(curl -s -w "\n%{http_code}" \
   -X POST "https://login.microsoftonline.com/${AZURE_TENANT_ID}/oauth2/v2.0/token" \

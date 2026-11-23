@@ -16,13 +16,10 @@
 
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 
-TENANT="lpl.onmicrosoft.com"
-SUBSCRIPTION="501a539e-6753-4fc2-9041-7a7985eed35f"
-RESOURCE_GROUP="rg-eloquentia-we1-uat"
-STORAGE_ACCOUNT="sastdelqtwe1uat"
-MONGO_CLUSTER="cosmosdb-mongo-elqt-we1-uat"
-COGNITIVE_ACCOUNT="csdi-eloquentia-we1-uat"
-KEY_VAULT="kv-elqt-we1-uat"
+# shellcheck source=/dev/null
+source "$HOME/Raycast/utils.zsh"
+load_env TENANT SUBSCRIPTION RESOURCE_GROUP STORAGE_ACCOUNT MONGO_CLUSTER COGNITIVE_ACCOUNT KEY_VAULT || exit 1
+
 MONGO_API_VERSION="2024-07-01"
 
 if ! az account show --subscription "$SUBSCRIPTION" >/dev/null 2>&1; then
